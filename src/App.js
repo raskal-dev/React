@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Axios from 'axios';
 
@@ -6,9 +6,16 @@ function App() {
 
   const [nom, setNom] = useState("");
   const [tel, setTel] = useState("");
+  const [clientList, setClientList] = useState([]);
+
+  useEffect(() => {
+    Axios.get('http://localhost:3001/api/get').then((response) => {
+      setClientList(response.data);
+    });
+  }, []);
 
   const submitbtn = () => {
-    Axios.post('http://localhost:3001/api/insert', { 
+    Axios.post('http://localhost:3001/api/insert', {
       nom: nom,
       tel: tel,
     }).then(() => {
@@ -34,6 +41,14 @@ function App() {
           }} />
         </div>
         <button className="btn btn-primary" onClick={submitbtn}>Envoyer</button>
+
+        {clientList.map((val) => {
+          return (
+            <h1>
+              Nom: {val.nom} | Téléphone: {val.tel}
+            </h1>
+          );
+        })}
       </div>
     </div>
   );
