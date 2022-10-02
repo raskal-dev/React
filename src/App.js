@@ -6,7 +6,7 @@ function App() {
 
   const [nom, setNom] = useState("");
   const [tel, setTel] = useState("");
-  const [clientList, setClientList] = useState([]);
+  const [clientList, setClientList] = useState([]); //mbola tsy mazava amiko eto
 
   useEffect(() => {
     Axios.get('http://localhost:3001/api/get').then((response) => {
