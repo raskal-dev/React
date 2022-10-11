@@ -1,4 +1,3 @@
-//test commit
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Axios from 'axios';
@@ -7,7 +6,7 @@ function App() {
 
   const [nom, setNom] = useState("");
   const [tel, setTel] = useState("");
-  const [clientList, setClientList] = useState([]); //mbola tsy mazava amiko eto
+  const [clientList, setClientList] = useState([]);
 
   useEffect(() => {
     Axios.get('http://localhost:3001/api/get').then((response) => {
